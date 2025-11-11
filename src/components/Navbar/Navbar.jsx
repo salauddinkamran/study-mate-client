@@ -1,23 +1,46 @@
 import React, { use } from "react";
-import { Link, Links } from "react-router";
+import { Link, Links, NavLink } from "react-router";
 import MyContainer from "../MyContainer/MyContainer";
 import logoIcon from "../../assets/image/book-2.png";
 import { AuthContext } from "../Contexts/AuthContext";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
-  const { user } = use(AuthContext);
+  const { user, signOutUser } = use(AuthContext);
   const items = (
     <>
       <li>
         {" "}
-        <Link to="/">Home</Link>{" "}
+        <NavLink to="/">Home</NavLink>{" "}
       </li>
       <li>
         {" "}
-        <Link to="find-partners">Find Partners</Link>{" "}
+        <NavLink to="/find-partners">Find Partners</NavLink>{" "}
       </li>
+      {user && (
+        <>
+          <li>
+            {" "}
+            <NavLink to="/create-partner-profile">Create Partner Profile</NavLink>{" "}
+          </li>
+          <li>
+            {" "}
+            <NavLink to="/my-connections">My Connections</NavLink>{" "}
+          </li>
+        </>
+      )}
     </>
   );
+
+  const handleSignOut = () => {
+    signOutUser()
+      .then(() => {
+        toast("SignOut Successfully");
+      })
+      .catch((error) => {
+        toast(error.message);
+      });
+  };
   return (
     <div className="shadow-sm">
       <MyContainer>
@@ -92,7 +115,7 @@ const Navbar = () => {
                       </li>
                       {/* <li>{ user.}</li> */}
                       <li>
-                        <a>Logout</a>
+                        <a onClick={handleSignOut}>Logout</a>
                       </li>
                     </ul>
                   </div>
