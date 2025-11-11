@@ -1,9 +1,11 @@
-import React from "react";
+import React, { use } from "react";
 import { Link, Links } from "react-router";
 import MyContainer from "../MyContainer/MyContainer";
-import logoIcon from "../../assets/image/book-2.png"
+import logoIcon from "../../assets/image/book-2.png";
+import { AuthContext } from "../Contexts/AuthContext";
 
 const Navbar = () => {
+  const { user } = use(AuthContext);
   const items = (
     <>
       <li>
@@ -57,10 +59,54 @@ const Navbar = () => {
               </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
-              <ul className="menu menu-horizontal px-1 text-lg font-semibold flex gap-5">{items}</ul>
+              <ul className="menu menu-horizontal px-1 text-lg font-semibold flex gap-5">
+                {items}
+              </ul>
             </div>
-            <div className="navbar-end">
-              <Link to="/register">Register</Link>
+            <div className="navbar-end flex gap-5">
+              {user ? (
+                <div className="flex gap-2">
+                  <div className="dropdown dropdown-end">
+                    <div
+                      tabIndex={0}
+                      role="button"
+                      className="btn btn-ghost btn-circle avatar"
+                    >
+                      <div className="w-10 rounded-full">
+                        <img
+                          alt="Tailwind CSS Navbar component"
+                          // src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                          src={user.photoURL}
+                        />
+                      </div>
+                    </div>
+                    <ul
+                      tabIndex="-1"
+                      className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+                    >
+                      <li>
+                        <a className="justify-between">
+                          Profile
+                          <span className="badge">Update</span>
+                        </a>
+                      </li>
+                      {/* <li>{ user.}</li> */}
+                      <li>
+                        <a>Logout</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              ) : (
+                <div className=" flex gap-5">
+                  <Link className="text-lg font-semibold" to="/login">
+                    Login
+                  </Link>
+                  <Link className="text-lg font-semibold" to="/register">
+                    Register
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
         </nav>
