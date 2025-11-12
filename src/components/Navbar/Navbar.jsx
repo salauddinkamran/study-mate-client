@@ -122,10 +122,10 @@ const Navbar = () => {
                 </div>
               ) : (
                 <div className=" flex gap-5">
-                  <Link className="text-lg font-semibold" to="/login">
+                  <Link className="text-lg font-semibold btn-primary" to="/login">
                     Login
                   </Link>
-                  <Link className="text-lg font-semibold" to="/register">
+                  <Link className="text-lg font-semibold btn-primary" to="/register">
                     Register
                   </Link>
                 </div>

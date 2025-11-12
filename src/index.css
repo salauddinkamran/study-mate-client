@@ -4,3 +4,7 @@
 nav .menu a.active {
  @apply text-blue-400
 }
+
+.btn-primary {
+  @apply bg-blue-400 text-white py-2 px-4 rounded cursor-pointer
+}
