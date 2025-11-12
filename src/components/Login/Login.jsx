@@ -1,9 +1,11 @@
-import React, { use } from "react";
+import React, { use, useState } from "react";
 import { AuthContext } from "../Contexts/AuthContext";
 import { toast } from "react-toastify";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   const { signInUser, googleSignIn } = use(AuthContext);
+  const [show, setShow] = useState(false);
   const handleSignInUser = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -24,7 +26,7 @@ const Login = () => {
     googleSignIn()
       .then((result) => {
         toast("SignIn Successfully");
-        console.log(result.user)
+        console.log(result.user);
       })
       .cathc((error) => {
         toast(error.message);
@@ -46,14 +48,20 @@ const Login = () => {
                   name="email"
                 />
               </div>
+              <div>
+                <label className="label text-lg font-semibold">Password</label>
+                <div className="relative">
+                <input
+                  type={show ? "text" : "password"}
+                  className="input w-full"
+                  placeholder="Password"
+                  name="password"
+                  />
+                  <span className="absolute top-3 right-3 text-base cursor-pointer" onClick={() => setShow(!show)}>{ show ? <FaEye/> : <FaEyeSlash/>}</span>
+                </div>
 
-              <label className="label text-lg font-semibold">Password</label>
-              <input
-                type="password"
-                className="input w-full"
-                placeholder="Password"
-                name="password"
-              />
+              </div>
+
               <div>
                 <a className="link link-hover">Forgot password?</a>
               </div>

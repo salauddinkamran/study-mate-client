@@ -1,9 +1,11 @@
-import React, { use } from "react";
+import React, { use, useState } from "react";
 import { AuthContext } from "../Contexts/AuthContext";
 import { toast } from "react-toastify";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Register = () => {
   const { createUser, updateUser, setUser } = use(AuthContext);
+  const [show, setShow] = useState(false);
   const handleRegister = (e) => {
     e.preventDefault();
     const name = e.target.name.value;
@@ -66,13 +68,19 @@ const Register = () => {
                   name="photo"
                 />
               </div>
-              <label className="label text-lg font-semibold">Password</label>
-              <input
-                type="password"
-                className="input w-full"
-                placeholder="Password"
-                name="password"
-              />
+              <div>
+                <label className="label text-lg font-semibold">Password</label>
+                <div className="relative">
+                  <input
+                    type={show ? "text" : "password"}
+                    className="input w-full"
+                    placeholder="Password"
+                    name="password"
+                  />
+                  <span className="absolute top-3 right-3 text-base cursor-pointer" onClick={() => setShow(!show)}>{ show ? <FaEye/> : <FaEyeSlash/>}</span>
+                </div>
+              </div>
+
               <button className="btn btn-neutral mt-4">Register</button>
             </fieldset>
           </form>
