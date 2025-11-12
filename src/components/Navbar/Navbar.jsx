@@ -4,9 +4,10 @@ import MyContainer from "../MyContainer/MyContainer";
 import logoIcon from "../../assets/image/book-2.png";
 import { AuthContext } from "../Contexts/AuthContext";
 import { toast } from "react-toastify";
+import { PulseLoader } from "react-spinners";
 
 const Navbar = () => {
-  const { user, signOutUser } = use(AuthContext);
+  const { user, signOutUser, loading } = use(AuthContext);
   const items = (
     <>
       <li>
@@ -21,7 +22,9 @@ const Navbar = () => {
         <>
           <li>
             {" "}
-            <NavLink to="/create-partner-profile">Create Partner Profile</NavLink>{" "}
+            <NavLink to="/create-partner-profile">
+              Create Partner Profile
+            </NavLink>{" "}
           </li>
           <li>
             {" "}
@@ -87,7 +90,9 @@ const Navbar = () => {
               </ul>
             </div>
             <div className="navbar-end flex gap-5">
-              {user ? (
+              {loading ? (
+                <PulseLoader />
+              ) : user ? (
                 <div className="flex gap-2">
                   <div className="dropdown dropdown-end">
                     <div
@@ -122,10 +127,16 @@ const Navbar = () => {
                 </div>
               ) : (
                 <div className=" flex gap-5">
-                  <Link className="text-lg font-semibold btn-primary" to="/login">
+                  <Link
+                    className="text-lg font-semibold btn-primary"
+                    to="/login"
+                  >
                     Login
                   </Link>
-                  <Link className="text-lg font-semibold btn-primary" to="/register">
+                  <Link
+                    className="text-lg font-semibold btn-primary"
+                    to="/register"
+                  >
                     Register
                   </Link>
                 </div>

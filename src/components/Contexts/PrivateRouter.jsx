@@ -8,11 +8,11 @@ const PrivateRouter = ({ children }) => {
   const location = useLocation();
   console.log(location)
   if (loading) {
-    // return (
-    //   <div className="flex justify-between items-center h-screen">
-    //     <PuffLoader />
-    //   </div>
-    // );
+    return (
+      <div className="w-[200px] h-screen mx-auto flex items-center justify-center">
+        <PuffLoader />
+      </div>
+    );
   }
   if (user) {
     return children;

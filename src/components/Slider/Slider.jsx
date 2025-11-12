@@ -33,13 +33,13 @@ const Slider = () => {
         className="mySwiper"
       >
         <SwiperSlide>
-          <img className="" src={sliderImg1} alt="" />
+          <img className="h-[90vh] w-full" src={sliderImg1} alt="" />
         </SwiperSlide>
         <SwiperSlide>
-          <img className="" src={sliderImg2} alt="" />
+          <img className="h-[90vh] w-full" src={sliderImg2} alt="" />
         </SwiperSlide>
         <SwiperSlide>
-          <img className="" src={sliderImg3} alt="" />
+          <img className="h-[90vh] w-full" src={sliderImg3} alt="" />
         </SwiperSlide>
       </Swiper>
     </div>
