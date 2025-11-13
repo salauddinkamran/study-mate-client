@@ -23,8 +23,6 @@ const FindPartnerCard = ({ fidnData }) => {
     name,
     subject,
     studyMode,
-    availabilityTime,
-    location,
     experienceLevel,
     rating
   } = fidnData;

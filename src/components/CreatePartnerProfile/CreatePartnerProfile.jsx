@@ -1,8 +1,7 @@
-import React, { use } from "react";
+import React from "react";
 import { AuthContext } from "../Contexts/AuthContext";
 
 const CreatePartnerProfile = () => {
-  const { user } = use(AuthContext);
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = {

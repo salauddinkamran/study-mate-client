@@ -21,33 +21,42 @@ export const router = createBrowserRouter([
       },
       {
         path: "/find-partners",
-        loader: ()=> fetch("http://localhost:3000/partner"),
+        loader: () => fetch("http://localhost:3000/partner"),
         Component: FindPartners,
       },
       {
         path: "/find-partner-details/:id",
-        loader: ({params}) => fetch(`http://localhost:3000/partner/${params.id}`),
-        element: <PrivateRouter>
-          <FindPartnerDetails></FindPartnerDetails>
-        </PrivateRouter>
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/partner/${params.id}`),
+        element: (
+          <PrivateRouter>
+            <FindPartnerDetails />
+          </PrivateRouter>
+        ),
       },
       {
         path: "/create-partner-profile",
-        element: <PrivateRouter>
-          <CreatePartnerProfile></CreatePartnerProfile>
-        </PrivateRouter>
+        element: (
+          <PrivateRouter>
+            <CreatePartnerProfile></CreatePartnerProfile>
+          </PrivateRouter>
+        ),
       },
       {
         path: "/my-connections",
-        element: <PrivateRouter>
-          <MyConnections></MyConnections>
-        </PrivateRouter>
+        element: (
+          <PrivateRouter>
+            <MyConnections></MyConnections>
+          </PrivateRouter>
+        ),
       },
       {
         path: "/profile",
-        element: <PrivateRouter>
-          <Profile></Profile>
-        </PrivateRouter>
+        element: (
+          <PrivateRouter>
+            <Profile></Profile>
+          </PrivateRouter>
+        ),
       },
       {
         path: "/register",

@@ -30,16 +30,16 @@ const Slider = () => {
         }}
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper"
+        className="mySwiper xl:h-[90vh]"
       >
         <SwiperSlide>
-          <img className="h-[90vh] w-full" src={sliderImg1} alt="" />
+          <img className="w-full" src={sliderImg1} alt="" />
         </SwiperSlide>
         <SwiperSlide>
-          <img className="h-[90vh] w-full" src={sliderImg2} alt="" />
+          <img className="w-full" src={sliderImg2} alt="" />
         </SwiperSlide>
         <SwiperSlide>
-          <img className="h-[90vh] w-full" src={sliderImg3} alt="" />
+          <img className="w-full" src={sliderImg3} alt="" />
         </SwiperSlide>
       </Swiper>
     </div>
