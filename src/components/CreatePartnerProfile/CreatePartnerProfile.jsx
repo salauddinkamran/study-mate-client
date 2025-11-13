@@ -2,23 +2,38 @@ import React, { use } from "react";
 import { AuthContext } from "../Contexts/AuthContext";
 
 const CreatePartnerProfile = () => {
-  const {user} = use(AuthContext)
+  const { user } = use(AuthContext);
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const formData = {
       name: e.target.name.value,
       subject: e.target.subject.value,
       availabilityTime: e.target.availabilityTime.value,
       experienceLevel: e.target.experienceLevel.value,
-      email: user.email,
+      email: e.target.email.value,
       profileimage: e.target.profileimage.value,
       studyMode: e.target.studyMode.value,
       location: e.target.location.value,
-      rating: e.target.rating.value,
-      partnerCount: e.target.partnerCount.value,
-    }
-    console.log(formData)
-  }
+      rating: parseFloat(e.target.rating.value),
+      partnerCount: parseInt(e.target.partnerCount.value),
+    };
+
+    fetch("http://localhost:3000/partner", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+    // console.log(formData);
+  };
   return (
     <div className="mb-20">
       <h3 className="text-5xl font-medium text-center mb-5 my-20">
@@ -95,21 +110,11 @@ const CreatePartnerProfile = () => {
                   <label className="label text-lg font-semibold">
                     Location
                   </label>
-                  <input
-                    type="text"
-                    className="input w-full"
-                    name="location"
-                  />
+                  <input type="text" className="input w-full" name="location" />
                 </div>
                 <div>
-                  <label className="label text-lg font-semibold">
-                    Rating
-                  </label>
-                  <input
-                    type="text"
-                    className="input w-full"
-                    name="rating"
-                  />
+                  <label className="label text-lg font-semibold">Rating</label>
+                  <input type="text" className="input w-full" name="rating" />
                 </div>
                 <div>
                   <label className="label text-lg font-semibold">

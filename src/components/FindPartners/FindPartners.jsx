@@ -5,7 +5,7 @@ import MyContainer from "../MyContainer/MyContainer";
 
 const FindPartners = () => {
   const datas = useLoaderData();
-  console.log(datas);
+  // console.log(datas);
   return (
     <MyContainer>
       <div>

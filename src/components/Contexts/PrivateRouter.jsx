@@ -6,7 +6,7 @@ import { PuffLoader } from "react-spinners";
 const PrivateRouter = ({ children }) => {
   const { user, loading } = use(AuthContext);
   const location = useLocation();
-  console.log(location)
+  // console.log(location)
   if (loading) {
     return (
       <div className="w-[200px] h-screen mx-auto flex items-center justify-center">

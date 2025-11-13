@@ -1,22 +1,9 @@
-import React from "react";
-import MyContainer from "../MyContainer/MyContainer";
+import React from 'react';
 import { Link } from "react-router";
 import { FaStar } from "react-icons/fa";
 
-// availabilityTime: "Evening 6–9 PM";
-// email: "aisha.rahman@example.com";
-// experienceLevel: "Intermediate";
-// id: "1";
-// location: "Dhaka, Bangladesh";
-// name: "Aisha Rahman";
-// patnerCount: 0;
-// profileimage: "https://i.ibb.co/xgZL6rX/profile1.jpg";
-// rating: 0;
-// studyMode: "Online";
-// subject: "Mathematics";
-// _id: "69142fc0dc6d2a88374091c1";
 
-const FindPartnerCard = ({ fidnData }) => {
+const TopStudentCard = ({ topStudentData }) => {
   const {
     _id,
     profileimage,
@@ -27,7 +14,8 @@ const FindPartnerCard = ({ fidnData }) => {
     location,
     experienceLevel,
     rating
-  } = fidnData;
+  } = topStudentData;
+  console.log(topStudentData)
   return (
     <div className="shadow-sm p-10 text-center">
       <div className="flex items-center justify-center mb-2">
@@ -49,4 +37,4 @@ const FindPartnerCard = ({ fidnData }) => {
   );
 };
 
-export default FindPartnerCard;
+export default TopStudentCard;
