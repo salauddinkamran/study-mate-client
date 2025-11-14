@@ -51,27 +51,6 @@ const FindPartnerDetails = () => {
       partnerEmail: email,
     };
 
-    // try {
-    //   const res = await fetch("http://localhost:3000/my-connection", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(newConnection),
-    //   });
-
-    //   const result = await res.json();
-
-    //   if (result.insertedId) {
-    //     toast("Partner request sent successfully!");
-    //   } else {
-    //     toast("Request sent!");
-    //   }
-    // } catch (err) {
-    //   console.error(err);
-    //   toast("Something went wrong!");
-    // }
-
     fetch("http://localhost:3000/my-connection", {
       method: "POST",
       headers: {
@@ -91,7 +70,7 @@ const FindPartnerDetails = () => {
   return (
     <div>
       {" "}
-      <div className="md:w-8/12 md:mx-auto my-20 shadow-sm p-2 md:p-10 rouded">
+      <div className="md:w-10/12 lg:w-8/12 md:mx-auto my-20 shadow-sm p-2 md:p-10 rouded">
         <div className="md:flex gap-10">
           <div className="w-40 h-40 object-cover">
             <img

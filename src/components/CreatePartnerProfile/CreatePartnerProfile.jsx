@@ -104,7 +104,7 @@ const CreatePartnerProfile = () => {
                   >
                     <option value="Online">Online</option>
                     <option value="Offline">Offline</option>
-                    <option value="Hybrid">Hybrid</option>
+                    <option value="Hybrid">Both</option>
                   </select>
                 </div>
                 <div>
