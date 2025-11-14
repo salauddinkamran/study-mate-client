@@ -2,6 +2,7 @@ import React, { use, useState } from "react";
 import { AuthContext } from "../Contexts/AuthContext";
 import { toast } from "react-toastify";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Link } from "react-router";
 
 const Register = () => {
   const { createUser, updateUser, setUser } = use(AuthContext);
@@ -77,10 +78,20 @@ const Register = () => {
                     placeholder="Password"
                     name="password"
                   />
-                  <span className="absolute top-3 right-3 text-base cursor-pointer" onClick={() => setShow(!show)}>{ show ? <FaEye/> : <FaEyeSlash/>}</span>
+                  <span
+                    className="absolute top-3 right-3 text-base cursor-pointer"
+                    onClick={() => setShow(!show)}
+                  >
+                    {show ? <FaEye /> : <FaEyeSlash />}
+                  </span>
                 </div>
               </div>
-
+              <p className="font-medium text-base">
+                Already have an account?{" "}
+                <Link className="text-blue-500" to="/login">
+                  Login Now
+                </Link>{" "}
+              </p>
               <button className="btn btn-neutral mt-4">Register</button>
             </fieldset>
           </form>

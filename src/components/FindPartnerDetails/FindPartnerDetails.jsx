@@ -1,8 +1,10 @@
-import React from "react";
+import React, { use } from "react";
 import { useLoaderData } from "react-router";
 import MyContainer from "../MyContainer/MyContainer";
 import { FaStar } from "react-icons/fa";
 import { MdLocationPin } from "react-icons/md";
+import { AuthContext } from "../Contexts/AuthContext";
+import { toast } from "react-toastify";
 
 // availabilityTime: "Evening 6–9 PM";
 // email: "aisha.rahman@example.com";
@@ -18,6 +20,7 @@ import { MdLocationPin } from "react-icons/md";
 // _id: "69142fc0dc6d2a88374091c1";
 
 const FindPartnerDetails = () => {
+  const { user } = use(AuthContext);
   const data = useLoaderData();
   console.log(data.result);
   const {
@@ -32,6 +35,59 @@ const FindPartnerDetails = () => {
     experienceLevel,
     patnerCount,
   } = data.result;
+
+  const handleSendRequest = async () => {
+    const newConnection = {
+      senderEmail: user?.email,
+      partnerId: data.result._id,
+      name,
+      profileimage,
+      subject,
+      studyMode,
+      rating,
+      location,
+      availabilityTime,
+      experienceLevel,
+      partnerEmail: email,
+    };
+
+    // try {
+    //   const res = await fetch("http://localhost:3000/my-connection", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(newConnection),
+    //   });
+
+    //   const result = await res.json();
+
+    //   if (result.insertedId) {
+    //     toast("Partner request sent successfully!");
+    //   } else {
+    //     toast("Request sent!");
+    //   }
+    // } catch (err) {
+    //   console.error(err);
+    //   toast("Something went wrong!");
+    // }
+
+    fetch("http://localhost:3000/my-connection", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newConnection),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          toast("Partner request sent successfully!");
+        } else {
+          toast("Request sent!");
+        }
+      });
+  };
   return (
     <div>
       {" "}
@@ -71,7 +127,10 @@ const FindPartnerDetails = () => {
               specialize in helping students improve their problem-solving
               slills.
             </p>
-            <button className="btn btn-primary border-0 mt-3 mb-5 lg:mb-0">
+            <button
+              onClick={handleSendRequest}
+              className="btn btn-primary border-0 mt-3 mb-5 lg:mb-0"
+            >
               Send Partner Request
             </button>
           </div>

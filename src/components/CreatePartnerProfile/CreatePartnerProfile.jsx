@@ -1,5 +1,6 @@
 import React from "react";
 import { AuthContext } from "../Contexts/AuthContext";
+import { toast } from "react-toastify";
 
 const CreatePartnerProfile = () => {
   const handleSubmit = (e) => {
@@ -26,10 +27,11 @@ const CreatePartnerProfile = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        toast("Study Partner Profile create done")
+        console.log(data)
       })
       .catch((error) => {
-        console.log(error.message);
+        toast(error.message);
       });
     // console.log(formData);
   };
@@ -137,3 +139,5 @@ const CreatePartnerProfile = () => {
 };
 
 export default CreatePartnerProfile;
+
+

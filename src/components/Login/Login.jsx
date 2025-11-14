@@ -2,6 +2,7 @@ import React, { use, useState } from "react";
 import { AuthContext } from "../Contexts/AuthContext";
 import { toast } from "react-toastify";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Link } from "react-router";
 
 const Login = () => {
   const { signInUser, googleSignIn } = use(AuthContext);
@@ -25,6 +26,24 @@ const Login = () => {
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {
+        const newUser = {
+          name: result.user.displayName,
+          email: result.user.email,
+          image: result.user.photoURL,
+        };
+        // create user in the database
+        fetch("http://localhost:3000/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log("data after user save", data);
+          });
+
         toast("SignIn Successfully");
         console.log(result.user);
       })
@@ -51,20 +70,31 @@ const Login = () => {
               <div>
                 <label className="label text-lg font-semibold">Password</label>
                 <div className="relative">
-                <input
-                  type={show ? "text" : "password"}
-                  className="input w-full"
-                  placeholder="Password"
-                  name="password"
+                  <input
+                    type={show ? "text" : "password"}
+                    className="input w-full"
+                    placeholder="Password"
+                    name="password"
                   />
-                  <span className="absolute top-3 right-3 text-base cursor-pointer" onClick={() => setShow(!show)}>{ show ? <FaEye/> : <FaEyeSlash/>}</span>
+                  <span
+                    className="absolute top-3 right-3 text-base cursor-pointer"
+                    onClick={() => setShow(!show)}
+                  >
+                    {show ? <FaEye /> : <FaEyeSlash />}
+                  </span>
                 </div>
-
               </div>
 
               <div>
                 <a className="link link-hover">Forgot password?</a>
               </div>
+
+              <p className="font-medium text-base">
+                Don't have an account?{" "}
+                <Link className="text-blue-500" to="/register">
+                  Register Now
+                </Link>{" "}
+              </p>
               <button className="btn btn-neutral mt-4">Login Now</button>
             </fieldset>
           </form>
