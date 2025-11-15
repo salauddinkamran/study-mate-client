@@ -11,7 +11,7 @@ const MyConnections = () => {
     fetch(`http://localhost:3000/my-connection`)
       .then((res) => res.json())
       .then((data) => {
-        console.log("my connection for this", data);
+        // console.log("my connection for this", data);
         setConnections(data);
       });
   }, []);

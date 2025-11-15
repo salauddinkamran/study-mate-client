@@ -26,8 +26,6 @@ export const router = createBrowserRouter([
       },
       {
         path: "/find-partner-details/:id",
-        loader: ({ params }) =>
-          fetch(`http://localhost:3000/partner/${params.id}`),
         element: (
           <PrivateRouter>
             <FindPartnerDetails />

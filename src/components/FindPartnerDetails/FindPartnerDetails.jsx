@@ -1,5 +1,5 @@
-import React, { use } from "react";
-import { useLoaderData } from "react-router";
+import React, { use, useEffect } from "react";
+import { useLoaderData, useParams } from "react-router";
 import MyContainer from "../MyContainer/MyContainer";
 import { FaStar } from "react-icons/fa";
 import { MdLocationPin } from "react-icons/md";
@@ -20,9 +20,21 @@ import { toast } from "react-toastify";
 // _id: "69142fc0dc6d2a88374091c1";
 
 const FindPartnerDetails = () => {
+  const { id } = useParams();
+  useEffect(() => {
+    fetch(`http://localhost:3000/partner/${id}`, {
+      headers: {
+        authorization: "Helli",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  }, []);
   const { user } = use(AuthContext);
-  const data = useLoaderData();
-  console.log(data.result);
+  // const data = useLoaderData();
+  // console.log(data.result);
   const {
     name,
     profileimage,
@@ -51,7 +63,7 @@ const FindPartnerDetails = () => {
       partnerEmail: email,
     };
 
-    fetch("http://localhost:3000/my-connection", {
+    fetch("http://localhost:3000/partner", {
       method: "POST",
       headers: {
         "content-type": "application/json",

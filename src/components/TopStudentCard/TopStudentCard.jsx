@@ -15,7 +15,7 @@ const TopStudentCard = ({ topStudentData }) => {
     experienceLevel,
     rating
   } = topStudentData;
-  console.log(topStudentData)
+  // console.log(topStudentData)
   return (
     <div className="shadow-sm p-10 text-center">
       <div className="flex items-center justify-center mb-2">
