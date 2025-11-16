@@ -15,6 +15,7 @@ const MyConnections = () => {
         setConnections(data);
       });
   }, []);
+
   const handleonDelete = (_id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -53,6 +54,7 @@ const MyConnections = () => {
       .then((res) => res.json())
       .then((data) => {
         setSelectedConnection(data);
+        connectionRef.current.showModal();
       });
   };
 
@@ -74,6 +76,7 @@ const MyConnections = () => {
       .then((res) => res.json())
       .then((data) => {
         toast("Connection updated successfully!");
+        console.log(data)
         connectionRef.current.close();
         const updatedList = connections.map((item) =>
           item._id === selectedConnection._id ? { ...item, ...formData } : item
@@ -203,7 +206,11 @@ const MyConnections = () => {
                             <button className="btn" type="submit">
                               Update
                             </button>
-                            <button onClick={() => connectionRef.current.close()} className="btn" type="button">
+                            <button
+                              onClick={() => connectionRef.current.close()}
+                              className="btn"
+                              type="button"
+                            >
                               Close
                             </button>
                           </div>

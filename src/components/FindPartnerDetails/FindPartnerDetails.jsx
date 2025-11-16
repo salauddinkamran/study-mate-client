@@ -1,38 +1,28 @@
-import React, { use, useEffect } from "react";
-import { useLoaderData, useParams } from "react-router";
+import React, { use, useEffect, useState } from "react";
+import { useParams } from "react-router";
 import MyContainer from "../MyContainer/MyContainer";
 import { FaStar } from "react-icons/fa";
 import { MdLocationPin } from "react-icons/md";
 import { AuthContext } from "../Contexts/AuthContext";
 import { toast } from "react-toastify";
 
-// availabilityTime: "Evening 6–9 PM";
-// email: "aisha.rahman@example.com";
-// experienceLevel: "Intermediate";
-// id: "1";
-// location: "Dhaka, Bangladesh";
-// name: "Aisha Rahman";
-// patnerCount: 0;
-// profileimage: "https://i.ibb.co/xgZL6rX/profile1.jpg";
-// rating: 0;
-// studyMode: "Online";
-// subject: "Mathematics";
-// _id: "69142fc0dc6d2a88374091c1";
-
 const FindPartnerDetails = () => {
+  const { user } = use(AuthContext);
   const { id } = useParams();
+  const [details, setDetails] = useState({});
   useEffect(() => {
     fetch(`http://localhost:3000/partner/${id}`, {
       headers: {
-        authorization: "Helli",
+        authorization: `Bearer ${user.accessToken}`,
       },
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        setDetails(data.result);
       });
   }, []);
-  const { user } = use(AuthContext);
+
   // const data = useLoaderData();
   // console.log(data.result);
   const {
@@ -46,12 +36,12 @@ const FindPartnerDetails = () => {
     email,
     experienceLevel,
     patnerCount,
-  } = data.result;
+  } = details;
 
   const handleSendRequest = async () => {
     const newConnection = {
       senderEmail: user?.email,
-      partnerId: data.result._id,
+      partnerId: details._id,
       name,
       profileimage,
       subject,
@@ -63,7 +53,7 @@ const FindPartnerDetails = () => {
       partnerEmail: email,
     };
 
-    fetch("http://localhost:3000/partner", {
+    fetch("http://localhost:3000/my-connection", {
       method: "POST",
       headers: {
         "content-type": "application/json",
