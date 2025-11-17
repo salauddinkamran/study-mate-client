@@ -9,20 +9,22 @@ const FindPartners = () => {
   const datas = useLoaderData();
   // const { loading } = use(AuthContext);
   const [partners, setPartners] = useState(datas);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
-  const handleSearch = (e)=> {
-    e.preventDefault()
+  const handleSearch = (e) => {
+    e.preventDefault();
     const search_text = e.target.search.value;
-    setLoading(true)
+    setLoading(true);
     // console.log(search_text)
-    fetch(`http://localhost:3000/search?search=${search_text}`)
-    .then(res => res.json())
-    .then(data => {
-     setPartners(data)
-     setLoading(false)
-    })
-  }
+    fetch(
+      `https://study-mate-server-eight-beta.vercel.app/search?search=${search_text}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setPartners(data);
+        setLoading(false);
+      });
+  };
   return (
     <MyContainer>
       <div>
@@ -33,7 +35,11 @@ const FindPartners = () => {
           <div className="join">
             <div>
               <div>
-                <input name="search" className="input join-item" placeholder="Search" />
+                <input
+                  name="search"
+                  className="input join-item"
+                  placeholder="Search"
+                />
               </div>
             </div>
             <div className="indicator">

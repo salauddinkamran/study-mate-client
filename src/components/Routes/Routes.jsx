@@ -21,7 +21,8 @@ export const router = createBrowserRouter([
       },
       {
         path: "/find-partners",
-        loader: () => fetch("http://localhost:3000/partner"),
+        loader: () =>
+          fetch("https://study-mate-server-eight-beta.vercel.app/partner"),
         Component: FindPartners,
       },
       {

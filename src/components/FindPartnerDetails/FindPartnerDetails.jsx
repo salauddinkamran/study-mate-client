@@ -11,7 +11,7 @@ const FindPartnerDetails = () => {
   const { id } = useParams();
   const [details, setDetails] = useState({});
   useEffect(() => {
-    fetch(`http://localhost:3000/partner/${id}`, {
+    fetch(`https://study-mate-server-eight-beta.vercel.app/partner/${id}`, {
       headers: {
         authorization: `Bearer ${user.accessToken}`,
       },
@@ -53,7 +53,7 @@ const FindPartnerDetails = () => {
       partnerEmail: email,
     };
 
-    fetch("http://localhost:3000/my-connection", {
+    fetch("https://study-mate-server-eight-beta.vercel.app/my-connection", {
       method: "POST",
       headers: {
         "content-type": "application/json",

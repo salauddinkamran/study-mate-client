@@ -32,7 +32,7 @@ const Login = () => {
           image: result.user.photoURL,
         };
         // create user in the database
-        fetch("http://localhost:3000/users", {
+        fetch("https://study-mate-server-eight-beta.vercel.app/users", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

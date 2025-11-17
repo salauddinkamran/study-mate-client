@@ -18,7 +18,7 @@ const CreatePartnerProfile = () => {
       partnerCount: parseInt(e.target.partnerCount.value),
     };
 
-    fetch("http://localhost:3000/partner", {
+    fetch("https://study-mate-server-eight-beta.vercel.app/partner", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -27,8 +27,8 @@ const CreatePartnerProfile = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        toast("Study Partner Profile create done")
-        console.log(data)
+        toast("Study Partner Profile create done");
+        console.log(data);
       })
       .catch((error) => {
         toast(error.message);
@@ -139,5 +139,3 @@ const CreatePartnerProfile = () => {
 };
 
 export default CreatePartnerProfile;
-
-

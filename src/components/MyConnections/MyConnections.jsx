@@ -8,7 +8,7 @@ const MyConnections = () => {
   const [selectedConnection, setSelectedConnection] = useState({});
   const connectionRef = useRef(null);
   useEffect(() => {
-    fetch(`http://localhost:3000/my-connection`)
+    fetch(`https://study-mate-server-eight-beta.vercel.app/my-connection`)
       .then((res) => res.json())
       .then((data) => {
         // console.log("my connection for this", data);
@@ -27,9 +27,12 @@ const MyConnections = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/my-connection/${_id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://study-mate-server-eight-beta.vercel.app/my-connection/${_id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount) {
@@ -50,7 +53,9 @@ const MyConnections = () => {
 
   const handleOnUpdate = (_id) => {
     connectionRef.current.showModal();
-    fetch(`http://localhost:3000/my-connection/${_id}`)
+    fetch(
+      `https://study-mate-server-eight-beta.vercel.app/my-connection/${_id}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setSelectedConnection(data);
@@ -66,17 +71,20 @@ const MyConnections = () => {
       studyMode: e.target.studyMode.value,
     };
 
-    fetch(`http://localhost:3000/my-connection/${selectedConnection._id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
+    fetch(
+      `https://study-mate-server-eight-beta.vercel.app/my-connection/${selectedConnection._id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         toast("Connection updated successfully!");
-        console.log(data)
+        console.log(data);
         connectionRef.current.close();
         const updatedList = connections.map((item) =>
           item._id === selectedConnection._id ? { ...item, ...formData } : item
